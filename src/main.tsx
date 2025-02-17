@@ -1,22 +1,43 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomeLayout from "./components/layouts/HomeLayout";
+import Home from "./components/Home";
+import Classes, { classesLoader } from "./components/Classes";
+import About from "./components/About";
 import "./index.css";
-import Landing, { landingLoader } from "./Landing";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
-    loader: landingLoader,
+    element: <HomeLayout />,
     children: [
       {
-        path: "/about",
-        element: <div>About</div>,
+        index: true,
+        element: <Home />,
+        // loader: homeLoader,
+        errorElement: <div>failed to render HOME</div>,
       },
       {
-        path: "/contact",
-        element: <div>Contact</div>,
+        path: "/profile",
+        element: <div>profile</div>,
+      },
+      {
+        path: "/classes",
+        element: <Classes />,
+        loader: classesLoader,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      //   {
+      //     path: "/calendar",
+      //     element: <div>calendar</div>,
+      //   },
+      {
+        path: "/*",
+        element: <div>404</div>,
       },
     ],
   },
@@ -27,3 +48,11 @@ createRoot(document.getElementById("root")!).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
+/* 
+'/'
+'/about'
+'/events'
+'/calendar'
+'/profile?member_id=uuid'
+
+*/
