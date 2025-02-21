@@ -2,10 +2,10 @@ import { Outlet } from "react-router-dom";
 // import { base_url } from "@/config";
 // type Member = {
 //   id: number;
-//   firstname: string;
+//   first_name: string;
 //   email: string;
-//   phonenumber: string;
-//   profile_type: "admin" | "client" | "instructor";
+//   phone_number: string;
+//   profile_type: "admin" | "client" | "staff";
 // };
 
 // type Enrollment = {

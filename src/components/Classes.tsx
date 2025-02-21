@@ -5,7 +5,7 @@ export type Class = {
   id: number;
   category: string;
   tag: string;
-  instructor_id: number;
+  staff_id: number;
   class_date: string;
   capacity: number;
 };
