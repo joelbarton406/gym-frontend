@@ -15,6 +15,8 @@ export default function SignupLogin() {
   return (
     <>
       <Tabs defaultValue="login" className="w-[375px]">
+        {" "}
+        {/* iphone se width */}
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="login">login</TabsTrigger>
           <TabsTrigger value="signup">signup</TabsTrigger>

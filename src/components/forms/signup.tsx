@@ -16,7 +16,7 @@ import {
 
 const schema = z.object({
   email: z.string().email(),
-  plaintext_password: z
+  password: z
     .string()
     .min(8)
     .regex(/[A-Z]/, "Must contain at least one UPPERCASE letter")
@@ -45,7 +45,7 @@ const formFields: {
     type: "text",
   },
   {
-    name: "plaintext_password",
+    name: "password",
     label: "password",
     placeholder: "********",
     type: "password",
@@ -75,6 +75,7 @@ export default function SignupForm() {
     resolver: zodResolver(schema),
     defaultValues: {
       email: "joel@gmail.com",
+      password: "********",
       phone_number: "4065995509",
       first_name: "joel",
       last_name: "barton",
@@ -91,7 +92,7 @@ export default function SignupForm() {
     });
     const { member, sessionId } = await res.json();
 
-    console.log({ member, sessionId});
+    console.log({ member, sessionId });
 
     // store sessionId in cookie
 

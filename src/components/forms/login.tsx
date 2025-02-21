@@ -16,7 +16,7 @@ import {
 
 const schema = z.object({
   email: z.string().email(),
-  plaintext_password: z
+  password: z
     .string()
     .min(8)
     .regex(/[A-Z]/, "Must contain at least one UPPERCASE letter")
@@ -40,7 +40,7 @@ const formFields: {
     type: "text",
   },
   {
-    name: "plaintext_password",
+    name: "password",
     label: "password",
     placeholder: "********",
     type: "password",
@@ -52,7 +52,7 @@ export default function Login() {
     resolver: zodResolver(schema),
     defaultValues: {
       email: "joel@gmail.com",
-      plaintext_password: "********",
+      password: "********",
     },
   });
 
@@ -68,6 +68,7 @@ export default function Login() {
 
     console.log({ member, sessionId });
   };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
