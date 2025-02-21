@@ -5,6 +5,7 @@ import HomeLayout from "./components/layouts/HomeLayout";
 import Home from "./components/Home";
 import Classes, { classesLoader } from "./components/Classes";
 import About from "./components/About";
+import Login from "./components/SignupLogin";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       //   {
       //     path: "/calendar",
