@@ -90,13 +90,8 @@ export default function SignupForm() {
       },
       body: JSON.stringify({ ...formData, profile_type: "admin" }),
     });
-    const { member, sessionId } = await res.json();
-
-    console.log({ member, sessionId });
-
-    // store sessionId in cookie
-
-    // redirect to logged-in page
+    const { member } = await res.json();
+    console.log({ member });
   };
 
   return (

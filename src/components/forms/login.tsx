@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,6 +48,7 @@ const formFields: {
 ];
 
 export default function Login() {
+  const navigate = useNavigate();
   const form = useForm<FormSchema>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -62,11 +63,14 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({ ...formData }),
     });
-    const { member, sessionId } = await res.json();
 
-    console.log({ member, sessionId });
+    const { member } = await res.json();
+    if (member) {
+      navigate(`member/${member.id}`);
+    }
   };
 
   return (

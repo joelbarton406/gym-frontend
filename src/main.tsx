@@ -4,14 +4,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from "./components/layouts/HomeLayout";
 import Home from "./components/Home";
 import Classes, { classesLoader } from "./components/Classes";
+import Member, { memberLoader } from "./components/Member";
 import About from "./components/About";
 import Login from "./components/SignupLogin";
 import "./index.css";
-
+import { AuthProvider } from "./providers/auth.provider";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <div>404 something broke</div>,
     children: [
       {
         index: true,
@@ -20,8 +22,9 @@ const router = createBrowserRouter([
         errorElement: <div>failed to render HOME</div>,
       },
       {
-        path: "/profile",
-        element: <div>profile</div>,
+        path: "/member/:memberId",
+        element: <Member />,
+        loader: memberLoader,
       },
       {
         path: "/classes",
@@ -36,10 +39,6 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-      //   {
-      //     path: "/calendar",
-      //     element: <div>calendar</div>,
-      //   },
       {
         path: "/*",
         element: <div>404</div>,
@@ -47,17 +46,10 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
-/* 
-'/'
-'/about'
-'/events'
-'/calendar'
-'/profile?member_id=uuid'
-
-*/

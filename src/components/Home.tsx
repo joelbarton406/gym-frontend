@@ -1,12 +1,25 @@
 import { Outlet } from "react-router-dom";
-// import { base_url } from "@/config";
-// type Member = {
-//   id: number;
-//   first_name: string;
-//   email: string;
-//   phone_number: string;
-//   profile_type: "admin" | "client" | "staff";
-// };
+
+import SignupLogin from "./SignupLogin";
+import { useAuth } from "@/providers/auth.provider";
+
+export default function Home() {
+  const { isAuthenticated, login, logout } = useAuth();
+  return (
+    <>
+      <h2>Home</h2>
+      {isAuthenticated ? (
+        <div>
+          <p>Welcome Back</p>
+          <button onClick={logout}>Logout</button>
+          <Outlet />
+        </div>
+      ) : (
+        <SignupLogin />
+      )}
+    </>
+  );
+}
 
 // type Enrollment = {
 //   id: number;
@@ -38,12 +51,3 @@ import { Outlet } from "react-router-dom";
 //     throw error;
 //   }
 // };
-
-export default function Home() {
-  return (
-    <>
-      <h2>Home</h2>
-      <Outlet />
-    </>
-  );
-}
